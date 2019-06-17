@@ -189,6 +189,8 @@
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnet1Name'))]",
     "publicIPAddressType": "Dynamic",
     "availabilitySet": "SRIOV_AMS20PRDHPC02_AVSET",
+    "nbrVMPerAvailabilitySet": 180,
+    "availabilitySetNumber": "[add(div(parameters('computeNodeNumber'), variables('nbrVMPerAvailabilitySet')), 1)]",
     "nicNameSuffix": "[concat('-nic', uniqueString(variables('subnetRef')))]",
     "nicNameHN": "[concat(parameters('clusterName'), variables('nicNameSuffix'))]",
     "vmSizeSuffix": "[uniqueString(resourceGroup().id)]",
@@ -314,7 +316,7 @@
     {
       "apiVersion": "2017-12-01",
       "type": "Microsoft.Compute/availabilitySets",
-      "name": "[concat(variables('availabilitySetNamePrefix'), padLeft(string(copyIndex()), 2, '0'))]",
+      "name": "SRIOV_AMS20PRDHPC02_AVSET",
       "location": "[resourceGroup().location]",
       "sku": {
         "name": "Aligned"
@@ -363,7 +365,7 @@
             "value": "[parameters('adminPassword')]"
           },
           "availabilitySetName": {
-            "value": "[concat(variables('availabilitySetNamePrefix'), '00')]"
+            "value": "SRIOV_AMS20PRDHPC02_AVSET"
           },
           "scriptBaseUri": {
             "value": "[parameters('artifactsBaseUrl')]"
@@ -486,7 +488,7 @@
             "value": "[parameters('adminPassword')]"
           },
           "availabilitySetName": {
-            "value": "[concat(variables('availabilitySetNamePrefix'), padLeft(string(div(add(copyIndex(), 1), variables('nbrVMPerAvailabilitySet'))), 2, '0'))]"
+            "value": "SRIOV_AMS20PRDHPC02_AVSET"
           },
           "customData": {
             "value": "[variables('computeNodeCustomData')]"
