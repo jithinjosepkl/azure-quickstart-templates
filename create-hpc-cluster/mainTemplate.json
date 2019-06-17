@@ -82,7 +82,7 @@
       "type": "int",
       "defaultValue": 10,
       "minValue": 1,
-      "maxValue": 500,
+      "maxValue": 620,
       "metadata": {
         "description": "The number of the compute nodes"
       }
