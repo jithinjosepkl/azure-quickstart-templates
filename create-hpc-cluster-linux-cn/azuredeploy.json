@@ -65,7 +65,8 @@
         "Standard_NC6",
         "Standard_NC12",
         "Standard_NC24",
-        "Standard_NC24r"
+        "Standard_NC24r",
+		"Standard_HC44rs"
       ],
       "metadata": {
         "description": "The VM size of the head node. Note that some VM sizes in the list are only available in some particular locations. Please check the availability and the price of the VM sizes at https://azure.microsoft.com/en-us/pricing/details/virtual-machines before deployment."
@@ -96,7 +97,8 @@
         "SLES_12_SP3_HPC_Premium",
         "SLES_12_SP3_Premium",
         "Ubuntu_14.04",
-        "Ubuntu_16.04"
+        "Ubuntu_16.04",
+		"CentOS-7.6 HPC"
       ],
       "metadata": {
         "description": "The VM image of the compute nodes"
@@ -104,7 +106,7 @@
     },
     "computeNodeNamePrefix": {
       "type": "string",
-      "defaultValue": "IaaSLnxCN-",
+      "defaultValue": "cp2k-",
       "minLength": 1,
       "maxLength": 12,
       "metadata": {
@@ -115,7 +117,7 @@
       "type": "int",
       "defaultValue": 2,
       "minValue": 1,
-      "maxValue": 500,
+      "maxValue": 610,
       "metadata": {
         "description": "The number of the compute nodes"
       }
@@ -177,7 +179,8 @@
         "Standard_NC6",
         "Standard_NC12",
         "Standard_NC24",
-        "Standard_NC24r"
+        "Standard_NC24r",
+		"Standard_HC44rs"
       ],
       "metadata": {
         "description": "The VM size of the compute nodes. Note that some VM sizes in the list are only available in some particular locations. Please check the availability and the price of the VM sizes at https://azure.microsoft.com/en-us/pricing/details/virtual-machines before deployment."
@@ -346,10 +349,16 @@
         "offer": "UbuntuServer",
         "sku": "16.04.0-LTS",
         "version": "latest"
-      }
+      },
+	  "CentOS-7.6 HPC": {
+				"publisher": "OpenLogic",
+				"offer": "CentOS-HPC",
+				"sku": "7.6",
+				"version": "latest"
+			}
     },
     "currentComputeNodeImage": "[variables('computeNodeImages')[parameters('computeNodeImage')]]",
-    "artifactsBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/create-hpc-cluster"
+    "artifactsBaseUrl": "https://raw.githubusercontent.com/jithinjosepkl/azure-quickstart-templates/test/create-hpc-cluster"
   },
   "resources": [
     {
