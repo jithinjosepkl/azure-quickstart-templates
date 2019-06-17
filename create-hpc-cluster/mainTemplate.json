@@ -189,7 +189,6 @@
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnet1Name'))]",
     "publicIPAddressType": "Dynamic",
     "availabilitySet": "SRIOV_AMS20PRDHPC02_AVSET",
-    "nbrVMPerAvailabilitySet": 620,
     "nicNameSuffix": "[concat('-nic', uniqueString(variables('subnetRef')))]",
     "nicNameHN": "[concat(parameters('clusterName'), variables('nicNameSuffix'))]",
     "vmSizeSuffix": "[uniqueString(resourceGroup().id)]",
